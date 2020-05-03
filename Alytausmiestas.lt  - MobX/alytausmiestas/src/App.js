@@ -1,8 +1,22 @@
-import React from 'react';
+import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { observer } from 'mobx-react';
 
-function App() {
+
+@observer(["TodolistStore"])
+class App extends Component {
+ 
+ 
+  constructor (){
+    
+  }
+
+
+  render() {
+
+
+const {todoList} = this.props.TodolistStore;
   return (
     <div className="App">
       <header className="App-header">
@@ -19,8 +33,9 @@ function App() {
           Learn React
         </a>
       </header>
+      {todoList.map((entry,i)=><li key={i}>{entry.msg}</li>)}
     </div>
   );
-}
+}}
 
 export default App;
